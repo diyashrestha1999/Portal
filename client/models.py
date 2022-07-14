@@ -16,3 +16,5 @@ class Client(models.Model):
     phone_number = models.CharField(max_length=50)
 
 
+    def __str__(self):
+        return f"Client: {self.full_name} {self.last_name}"

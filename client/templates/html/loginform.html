@@ -11,14 +11,17 @@
 
 <body>
 
-    <form>
-        <ul>Fist Name: {{form.full_name}}</ul>
+    <form  method="POST">
+        {%csrf_token%}
+        <ul>Fist Name: {{form.first_name}}</ul>
         <ul>Last Name: {{form.last_name}}</ul>
         <ul>Oraganisation Email: {{form.email}}</ul>
         <ul> Oraganisation Name:{{form.oraganisation}}</ul>
         <ul>Country: {{form.country}}</ul>
         <ul>Password: {{form.password}}</ul>
+        <ul> Confirm Password: {{form.retype_password}}</ul>
         <ul>Number: {{form.phone_number}}</ul>
+        
         <ul><button  type="submit">Submit</button></ul>
         
     </form>
