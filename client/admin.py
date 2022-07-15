@@ -1,4 +1,5 @@
 
+from django.http import HttpResponseRedirect
 from .models import Client
 from django.contrib import admin
 
@@ -18,7 +19,7 @@ class MyModelAdmin(admin.ModelAdmin):
         return super(MyModelAdmin, self).change_view(request, object_id, extra_context=extra_context)
 
 class PersonDataAdmin(admin.ModelAdmin):
-    readonly_fields=('full_name', 'last_name', 'email', 'organisation','date','country','domain','phone_number','gender')
+    readonly_fields=('full_name', 'last_name', 'email', 'organisation','organisation_size','date','country','domain','phone_number','gender','is_approved')
     search_fields = ['organisation']
     list_display= ('full_name', 'email', 'organisation','date','domain','phone_number')
     def has_add_permission(self, request, obj=None):
@@ -30,11 +31,20 @@ class PersonDataAdmin(admin.ModelAdmin):
         extra_context['show_save']=False
         return super(PersonDataAdmin,self).changeform_view(request,object_id,extra_context=extra_context)
 
-class TestAdmin(admin.ModelAdmin):
-    # path to the app_name/templates/admin/app_name/change_form.html
-    change_form_template = 'admin/app_name/change_form.html'
+# class ClientAdmin(admin.ModelAdmin):
+#     ...
+#     change_form_template = "entities/villain_changeform.html"
+
+
+#     def response_change(self, request, obj):
+#         if "approve_client" in request.POST:
+         
+#             # self.message_user(request, "This villain is now unique")
+#             return HttpResponseRedirect("/admin/client/client/")
+#         return super().response_change(request, obj)
 
    
 admin.site.register(Client,PersonDataAdmin)
+# admin.site.register(ClientAdmin)
 
 
