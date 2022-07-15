@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 from countries_list import countries
-
 from django.db import models
 
 
