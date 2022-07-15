@@ -13,7 +13,6 @@ def getclientinfo(request):
         phone_number = request.POST["phone_number"]
         domain = request.POST["domain"]
         gender = request.POST["gender"]
-
         Client.objects.create(full_name=first_name,
                               last_name=last_name,
                               email=email,
@@ -24,3 +23,11 @@ def getclientinfo(request):
                               gender=gender
                               )
     return render(request, "html/loginform.html")
+    
+ 
+class ClientList(viewsets.ModelViewSet):
+
+    queryset=Client.objects.filter(is_approved=True)
+    serializer_class=ClientSerializer
+
+  
