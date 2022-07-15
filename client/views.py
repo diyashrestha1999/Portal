@@ -13,10 +13,12 @@ from django.core.validators import validate_slug
 
 class ClientList(viewsets.ModelViewSet):
 
-    queryset=Client.objects.all()
+    queryset=Client.objects.filter(is_approved=True)
     serializer_class=ClientSerializer
+
+    
 # Create your views here.
-CHOICE=[("Male","Male"),("Female","Female")]
+CHOICE=[("Male","Male"),("Female","Female"),("Others","Others")]
 org=[("0-50 Employee","0-50 Employee"),("51-100 Employee","51-100 Employee"),
     ("101-150 Employee","101-150 Employee"),("151-200 Employee","151-200 Employee"),("200+ Employee","200+ Employee")]
 class LoginForm(forms.Form):
@@ -49,7 +51,8 @@ def addClient(request):
             organisation_size=value.cleaned_data["organisation_size"]
             
         
-            Client.objects.create(full_name=first_name,
+            Client.objects.create(
+            first_name=first_name,
             last_name=last_name,
             email=email,
             organisation=organisation,
