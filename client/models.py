@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 from countries_list import countries
-
 from django.db import models
 
 
@@ -15,7 +14,7 @@ class Client(models.Model):
     country=models.CharField(max_length=50, choices=countries, default="Nepal")
     phone_number = models.CharField(max_length=50)
     domain=models.SlugField(null=True, blank=True)
-    gender=models.CharField(max_length=50, choices=CHOICE)
+    gender= models.CharField(max_length=50, choices=CHOICE)
 
 
     def __str__(self):
