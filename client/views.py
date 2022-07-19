@@ -1,7 +1,9 @@
 from .models import Client
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import ClientSerializer
+from rest_framework.mixins import CreateModelMixin
+from .serializers import ClientCreateSerializer, ClientSerializer
+from django.core.exceptions import ValidationError
 
 
 def getclientinfo(request):
@@ -9,6 +11,8 @@ def getclientinfo(request):
         first_name = request.POST["first_name"]
         last_name = request.POST["last_name"]
         email = request.POST["email"]
+        if Client.objects.filter(email=email).exists():
+            raise ValidationError("Email already exist")
         organisation = request.POST["organisation"]
         country = request.POST["country"]
         phone_number = request.POST["phone_number"]
@@ -24,6 +28,11 @@ def getclientinfo(request):
                               gender=gender
                               )
     return render(request, "html/loginform.html")
+
+class ClientCreateViewSet(CreateModelMixin, viewsets.GenericViewSet):
+    queryset = Client.objects.all()
+    serializer_class = ClientCreateSerializer
+
     
  
 class ClientList(viewsets.ModelViewSet):

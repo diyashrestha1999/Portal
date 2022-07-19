@@ -9,6 +9,6 @@ app_name="main"
 urlpatterns = [
     # path('', views.addClient,name="loginform"),
     path('api/', include(router.urls)),
-    path('', views.getclientinfo, name="client"),
+    path('create/', views.ClientCreateViewSet.as_view({'post': 'create'}), name="create"),
 
 ]
