@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -10,7 +11,7 @@
     <title>Portal</title>
 
 
-    <link rel="stylesheet" href="client/static/css/style.css">
+    <link rel="stylesheet" href="static/css/style.css">
 <!--     Latest compiled and minified CSS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -35,12 +36,12 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card" style="border-radius: 20px;">
-            <div class="card-img">
-                {% load static %}
-                <img src="https://mj.trial.realhrsoft.com/images/logo/realhr-login-cover.jpg" alt=".">
-                <img src="{% static 'realhr-login-cover.jpg' %}" alt="." width="100", height="100">
+<!--              <img src="static/images/logo-tag.png" height="150" width="600">-->
+              <img src="https://mj.trial.realhrsoft.com/images/logo/realhr-login-cover.jpg" alt=".">
 
-              <div class="card-body p-5">
+            <div class="card-img">
+
+            <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Register for demo!</h2>
 
               <form method="POST" action="">
@@ -73,13 +74,12 @@
                 </div>
 
                  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Organization Size  </button>
-  <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-
+                    Organization Size  </button>
+                      <div class="dropdown-menu">
+                          <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
                 <div class="form-outline mb-4">
                   <label class="form-label" >Organization E-mail</label>
                   <input type="email" class="form-control form-control-lg" placeholder="Organization E-mail" name="email" required="True"/>
@@ -126,3 +126,125 @@ Organization Size  </button>
 </script>
 
 </body>
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--	<meta charset="utf-8">-->
+<!--	<title>Form-v2 by Colorlib</title>-->
+<!--	&lt;!&ndash; Mobile Specific Metas &ndash;&gt;-->
+<!--	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">-->
+<!--	&lt;!&ndash; Font&ndash;&gt;-->
+<!--	<link rel="stylesheet" type="text/css" href="static/css/roboto-font.css">-->
+<!--	<link rel="stylesheet" type="text/css" href="fonts/line-awesome/css/line-awesome.min.css">-->
+<!--	&lt;!&ndash; Jquery &ndash;&gt;-->
+<!--	<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">-->
+<!--	&lt;!&ndash; Main Style Css &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="static/css/style.css"/>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<div class="container">-->
+<!--  <div class="mask d-flex align-items-center h-100 gradient-custom-3">-->
+<!--    <div class="container h-80">-->
+<!--      <div class="row d-flex justify-content-center align-items-center h-100">-->
+<!--        <div class="col-12 col-md-9 col-lg-7 col-xl-6">-->
+<!--          <div class="card" style="border-radius: 20px;">-->
+<!--            <div class="card-img">-->
+<!--                {% load static %}-->
+<!--                <img src="https://mj.trial.realhrsoft.com/images/logo/realhr-login-cover.jpg" alt=".">-->
+<!--                <img src="{% static 'realhr-login-cover.jpg' %}" alt="." width="100", height="100">-->
+
+<!--              <div class="card-body p-5">-->
+<!--              <h2 class="text-uppercase text-center mb-5">Register for demo!</h2>-->
+
+<!--              <form method="POST" action="">-->
+<!--                  {% csrf_token %}-->
+<!--                <div class="form-outline mb-4">-->
+<!--                  <label class="form-label">First Name</label>-->
+<!--                  <input class="form-control form-control-lg" placeholder="First Name" name="first_name" required="True"/>-->
+<!--                </div>-->
+
+<!--                <div class="form-outline mb-4">-->
+<!--                    <label class="form-label">Last Name</label>-->
+<!--                  <input class="form-control form-control-lg" placeholder="Last Name" name="last_name" required="True"/>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <label class="form-label">Please Select Your Gender</label>-->
+<!--                    <div>-->
+<!--                    <input type="radio" name="gender" value="Male">-->
+<!--                    <label for="gender">Male</label><br>-->
+<!--                    <input type="radio"  name="gender" value="Female">-->
+<!--                    <label for="gender">Female</label><br>-->
+<!--                    <input type="radio" name="gender" value="Others">-->
+<!--                    <label for="gender">Others</label>-->
+
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="form-outline mb-4">-->
+<!--                    <label class="form-label">Organization Name</label>-->
+<!--                  <input class="form-control form-control-lg" placeholder="Organization Name" name="organisation" required="True"/>-->
+<!--                </div>-->
+
+<!--                 <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--Organization Size  </button>-->
+<!--  <div class="dropdown-menu">-->
+<!--      <a class="dropdown-item" href="#">Action</a>-->
+<!--    <a class="dropdown-item" href="#">Another action</a>-->
+<!--    <a class="dropdown-item" href="#">Something else here</a>-->
+<!--  </div>-->
+
+<!--                <div class="form-outline mb-4">-->
+<!--                  <label class="form-label" >Organization E-mail</label>-->
+<!--                  <input type="email" class="form-control form-control-lg" placeholder="Organization E-mail" name="email" required="True"/>-->
+<!--                </div>-->
+
+<!--                <div class="form-outline mb-4">-->
+<!--                  <label class="form-label" >Phone No:</label>-->
+<!--                  <input type="text" class="form-control form-control-lg" placeholder="+977 01-45214652"  name="phone_number" required="True"/>-->
+<!--                </div>-->
+<!--                <div class="form-outline mb-4">-->
+<!--                  <label class="form-label" >Domain</label>-->
+<!--                  <input type="text" class="form-control form-control-lg" placeholder="*****.aayulogic.com" name="domain" required="True"/>-->
+<!--                </div>-->
+
+<!--                <div class="form-outline mb-4">-->
+<!--                    <label for="country" class="form-label" >Select Your Country</label>-->
+<!--                </div>-->
+<!--                <select class="selectpicker countrypicker" data-flag="true" name="country" ></select>-->
+
+<!--                <div class="form-check d-flex justify-content-center mb-5">-->
+<!--                  <input class="form-check-input me-2" type="checkbox" value="" required="True" />-->
+<!--                  <label class="form-check-label">-->
+<!--                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>-->
+<!--                  </label>-->
+<!--                </div>-->
+
+<!--                <div class="d-flex justify-content-center">-->
+<!--                  <button type="submit"-->
+<!--                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Try Free Demo</button>-->
+<!--                </div>-->
+<!--              </form>-->
+
+<!--            </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--  $('.countrypicker').countrypicker();-->
+<!--</script>-->
+
+<!--</body>-->
+<!--</html>-->
