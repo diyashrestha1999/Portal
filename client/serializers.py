@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.forms import SlugField, ValidationError
 from rest_framework import serializers
 from .models import Client
-
+import re
 
 # class UserSerializer(serializers.ModelSerializer):
 #     # vendors = serializers.PrimaryKeyRelatedField(many=True, queryset=Vendor.objects.all())
@@ -30,12 +30,13 @@ class ClientCreateSerializer(serializers.ModelSerializer):
         if Client.objects.filter(domain=value).exists():
             raise serializers.ValidationError("This 'DOMAIN' already exists!.")
         return value
+        
     def validate_phone_number(self, value):
         if Client.objects.filter(phone_number=value).exists():
             raise serializers.ValidationError("This 'NUMBER' already exists!.")
-
-        if not value.startswith("98"):
-            raise serializers.ValidationError("bigriyo")
+    
+        if not re.match(r"9[7|8]\d{8}", value):
+            raise serializers.ValidationError("number should start with 98 or 97")
         return value
 
     def validate(self, attrs):

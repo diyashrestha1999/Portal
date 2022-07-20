@@ -1,5 +1,7 @@
+from curses.ascii import EM
 from countries_list import countries
 from django.db import models
+from django.core.validators import EmailValidator
 
 
 class Client(models.Model):
@@ -23,5 +25,6 @@ class Client(models.Model):
     organisation_size = models.CharField(max_length=50,choices=org)
 
     def __str__(self):
-        return f"Client: {self.first_name} {self.last_name} {self.date} {self.is_approved}"
+        return f"Client: {self.first_name}"
+        # {self.last_name} {self.date} {self.is_approved}"
 
