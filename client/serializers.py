@@ -14,10 +14,11 @@ import re
 #         fields=['username','email']
 
 class ClientSerializer(serializers.ModelSerializer):
-    # domain = serializers.SerializerMethodField()
+    # first_name = serializers.CharField(read_only=True)
     class Meta:
         model= Client
         fields = ['first_name', 'last_name', 'email', 'date', 'domain']
+        write_only_fields = ['first_name']
 
 
 class ClientCreateSerializer(serializers.ModelSerializer):
@@ -39,9 +40,7 @@ class ClientCreateSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("number should start with 98 or 97")
         return value
 
-    def validate(self, attrs):
-        email = attrs.get("email").lower()
-        attrs["email"] = email
-        if Client.objects.filter(email=email).exists():
+    def validate_email(self, email):
+        if Client.objects.filter(email=email.lower()).exists():
             raise serializers.ValidationError({"email": "This 'EMAIL' already exists!."})
-        return super().validate(attrs)
+        return email
