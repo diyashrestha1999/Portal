@@ -7,6 +7,8 @@ from rest_framework import serializers
 from .models import Client
 import re
 
+
+
 # class UserSerializer(serializers.ModelSerializer):
 #     # vendors = serializers.PrimaryKeyRelatedField(many=True, queryset=Vendor.objects.all())
 #     class Meta:
@@ -14,11 +16,12 @@ import re
 #         fields=['username','email']
 
 class ClientSerializer(serializers.ModelSerializer):
-    # first_name = serializers.CharField(read_only=True)
+    
+    first_name = serializers.CharField(read_only=True)
     class Meta:
         model= Client
         fields = ['first_name', 'last_name', 'email', 'date', 'domain']
-        write_only_fields = ['first_name']
+        read_only_fields = fields
 
 
 class ClientCreateSerializer(serializers.ModelSerializer):
@@ -42,5 +45,5 @@ class ClientCreateSerializer(serializers.ModelSerializer):
 
     def validate_email(self, email):
         if Client.objects.filter(email=email.lower()).exists():
-            raise serializers.ValidationError({"email": "This 'EMAIL' already exists!."})
-        return email
+            raise serializers.ValidationError("This 'EMAIL' already exists!.")
+        return email.lower()

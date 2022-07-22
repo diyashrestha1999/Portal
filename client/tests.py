@@ -1,13 +1,32 @@
-
-
-import email
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 from django.test import TestCase
 from .models import Client
+from django.contrib.auth.models import User
 
 #testing example
+
+class UserLoginTest(TestCase):
+    def setUp(self):
+        self.credentials = {
+            'username': 'piya',
+            'password': 'secret'}
+        self.user = User.objects.create_user(**self.credentials)
+        
+    def test_login(self):
+        is_authenticated = self.client.login(**self.credentials)
+        self.assertTrue(is_authenticated)
+        login_status = self.client.login(
+            username='bishal',
+            password='secrettop'
+        )
+        self.assertFalse(login_status)
+
+    def test_1(self):
+        self.assertTrue(User.objects.exists())
+
+
 class TestClientModels(TestCase):
     def test_model_client(self):
         client = Client.objects.create(first_name="habin")
@@ -29,7 +48,16 @@ class URLTests(TestCase):
 
 #testing whether the post method is working or not
 class ClientTests(TestCase):
+    def setUp(self):
+        self.credentials = {
+            'username': 'piya',
+            'password': 'secret'}
+        self.user = User.objects.create_user(**self.credentials)
+        self.client.login(**self.credentials)
+
     def test_create_client(self):
+
+        
         url = reverse('main:create')
         
         payload = {
@@ -49,18 +77,12 @@ class ClientTests(TestCase):
         response = self.client.post(path=url, data=payload, format='json')
 
         #checking if the status of the response with the expected output
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 201, response.json())
 
         #checking if the filtered email exit or not
         self.assertEqual(Client.objects.filter(email="ayid@gmail.com").exists(), True)
 
-
-
-       
-     
         Client.objects.all().delete()
-        
-
         payload = {
             "first_name": "deeya",
             "last_name": "stha",
@@ -89,6 +111,8 @@ class ClientTests(TestCase):
     
 
     def test_email_lowercase(self):
+
+
         url = reverse('main:create')
 
         payload = {
@@ -112,6 +136,8 @@ class ClientTests(TestCase):
 
    
     def test_phone_number(self):
+
+
         url = reverse('main:create')
 
         payload = {
@@ -141,6 +167,7 @@ class ClientTests(TestCase):
 
 
     def test_uniqueness(self):
+       
         url = reverse('main:create')
         payload = {
             "first_name": "deeya",
@@ -165,19 +192,10 @@ class ClientTests(TestCase):
 
         response=self.client.post(url, data=payload, format="json")
         self.assertEqual(response.status_code, 400)
-        print(response.json())
+        # print(response.json())
 
         self.assertEqual(response.json().get('phone_number')[0], 'client with this phone number already exists.')
         self.assertEqual(response.json().get('email')[0], "This 'EMAIL' already exists!.")
     
         self.assertEqual(response.json().get('domain')[0], 'client with this domain already exists.')
 
-
-
-
-
-
-
-        
-
-         
