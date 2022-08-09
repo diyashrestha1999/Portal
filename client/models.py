@@ -18,10 +18,13 @@ class Client(models.Model):
     organisation = models.CharField(max_length=50)
     country = models.CharField(max_length=50, choices=countries, default="Nepal")
     phone_number = models.CharField(max_length=13,unique=True)
-    domain = models.CharField(max_length=50,unique=True)
+    domain = models.SlugField(max_length=50,unique=True)
     gender = models.CharField(max_length=50, choices=CHOICE)
     date = models.DateField(auto_now_add=True)
     is_approved = models.BooleanField(default=False)
+
+    #approved_on = datetime
+    
     organisation_size = models.CharField(max_length=50,choices=org)
 
     def __str__(self):
